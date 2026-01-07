@@ -56,7 +56,7 @@ const SignInPage = () => {
              <img 
                src="https://customer-assets.emergentagent.com/job_messaging-app-253/artifacts/qzzmcpqd_aviato.png" 
                alt="Aviato" 
-               className="h-12 w-auto object-contain"
+               className="h-24 w-auto object-contain"
              />
           </div>
           <CardTitle className="text-3xl font-bold text-foreground">
