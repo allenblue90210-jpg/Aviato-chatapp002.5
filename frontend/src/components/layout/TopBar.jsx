@@ -14,7 +14,7 @@ const TopBar = () => {
         <img 
           src="https://customer-assets.emergentagent.com/job_messaging-app-253/artifacts/55vxbv1v_aviato.png" 
           alt="Aviato" 
-          className="h-24 w-auto object-contain"
+          className="h-12 w-auto object-contain"
         />
       </h1>
     </div>
