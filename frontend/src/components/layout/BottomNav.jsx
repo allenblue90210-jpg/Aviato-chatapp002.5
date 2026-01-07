@@ -1,20 +1,21 @@
-
 import React from 'react';
 import { MessageSquare, Search, Star, User, Settings } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const BottomNav = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   
   const isActive = (path) => location.pathname === path || location.pathname.startsWith(`${path}/`);
   
   const navItems = [
-    { id: 'chat', icon: MessageSquare, label: 'Chat', path: '/chat' },
-    { id: 'match', icon: Search, label: 'Match', path: '/match' },
-    { id: 'review', icon: Star, label: 'Review', path: '/review' },
-    { id: 'profile', icon: User, label: 'Profile', path: '/profile' },
-    { id: 'settings', icon: Settings, label: 'Settings', path: '/settings' },
+    { id: 'chat', icon: MessageSquare, label: t('nav.chat'), path: '/chat' },
+    { id: 'match', icon: Search, label: t('nav.match'), path: '/match' },
+    { id: 'review', icon: Star, label: t('nav.review'), path: '/review' },
+    { id: 'profile', icon: User, label: t('nav.profile'), path: '/profile' },
+    { id: 'settings', icon: Settings, label: t('nav.settings'), path: '/settings' },
   ];
 
   return (
