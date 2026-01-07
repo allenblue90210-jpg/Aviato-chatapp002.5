@@ -54,7 +54,7 @@ const SignInPage = () => {
           {/* Logo Replacement for Sign In Header */}
           <div className="mb-2">
              <img 
-               src="https://customer-assets.emergentagent.com/job_messaging-app-253/artifacts/qzzmcpqd_aviato.png" 
+               src="https://customer-assets.emergentagent.com/job_messaging-app-253/artifacts/55vxbv1v_aviato.png" 
                alt="Aviato" 
                className="h-48 w-auto object-contain"
              />
