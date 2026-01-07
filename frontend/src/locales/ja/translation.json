@@ -100,7 +100,35 @@
   "signin": {
     "title": "サインイン",
     "google": "Googleでサインイン",
-    "guest": "ゲストとして続行"
+    "guest": "ゲストとして続行",
+    "create_account": "アカウント作成",
+    "welcome": "Aviatoへようこそ",
+    "join_community": "コミュニティに参加しよう",
+    "sign_in_continue": "サインインして続ける",
+    "full_name": "氏名",
+    "email": "メールアドレス",
+    "password": "パスワード",
+    "creating": "アカウント作成中...",
+    "signing_in": "サインイン中...",
+    "or_email": "またはメールで続行",
+    "already_account": "すでにアカウントをお持ちですか？",
+    "dont_have_account": "アカウントをお持ちでないですか？"
+  },
+  "match": {
+    "find_vibe": "バイブスを見つける",
+    "select_interests": "興味を選択してマッチング",
+    "interests_selected": "{{count}} 個の興味を選択中",
+    "no_matches": "これら興味に一致するマッチは見つかりませんでした。",
+    "no_users": "\"{{query}}\" に一致するユーザーは見つかりませんでした",
+    "search_placeholder": "名前または評価で検索..."
+  },
+  "review": {
+    "rate": "評価",
+    "rated": "評価済み",
+    "rate_user": "{{name}} を評価",
+    "no_users": "レビューするユーザーが見つかりません。",
+    "search_placeholder": "チャットした人を検索...",
+    "rated_by": "評価者"
   },
   "common": {
     "save": "保存",
@@ -112,6 +140,9 @@
     "back": "戻る",
     "next": "次へ",
     "done": "完了",
-    "loading": "読み込み中..."
+    "loading": "読み込み中...",
+    "search": "検索...",
+    "message": "メッセージ",
+    "unavailable": "利用不可"
   }
 }

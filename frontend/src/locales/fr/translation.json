@@ -100,7 +100,35 @@
   "signin": {
     "title": "Se connecter",
     "google": "Se connecter avec Google",
-    "guest": "Continuer en tant qu'invité"
+    "guest": "Continuer en tant qu'invité",
+    "create_account": "Créer un compte",
+    "welcome": "Bienvenue sur Aviato",
+    "join_community": "Rejoignez la communauté aujourd'hui",
+    "sign_in_continue": "Connectez-vous pour continuer votre voyage",
+    "full_name": "Nom complet",
+    "email": "Email",
+    "password": "Mot de passe",
+    "creating": "Création du compte...",
+    "signing_in": "Connexion...",
+    "or_email": "ou continuer avec l'email",
+    "already_account": "Vous avez déjà un compte ?",
+    "dont_have_account": "Vous n'avez pas de compte ?"
+  },
+  "match": {
+    "find_vibe": "Trouvez votre Vibe",
+    "select_interests": "Sélectionnez des intérêts",
+    "interests_selected": "{{count}} intérêts sélectionnés",
+    "no_matches": "Aucun match trouvé avec ces intérêts.",
+    "no_users": "Aucun utilisateur trouvé correspondant à \"{{query}}\"",
+    "search_placeholder": "Rechercher un nom ou une note..."
+  },
+  "review": {
+    "rate": "Noter",
+    "rated": "Noté",
+    "rate_user": "Noter {{name}}",
+    "no_users": "Aucun utilisateur trouvé à évaluer.",
+    "search_placeholder": "Rechercher des personnes avec qui vous avez discuté...",
+    "rated_by": "Noté par"
   },
   "common": {
     "save": "Enregistrer",
@@ -112,6 +140,9 @@
     "back": "Retour",
     "next": "Suivant",
     "done": "Terminé",
-    "loading": "Chargement..."
+    "loading": "Chargement...",
+    "search": "Rechercher...",
+    "message": "Message",
+    "unavailable": "Indisponible"
   }
 }
