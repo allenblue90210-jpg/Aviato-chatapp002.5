@@ -18,10 +18,7 @@ const TopBar = () => {
         />
       </div>
 
-      {/* Center: Name */}
-      <h1 className="text-xl font-bold text-primary">
-        Aviato
-      </h1>
+      {/* Center: Empty (Name removed as per request) */}
     </div>
   );
 };
