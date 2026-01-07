@@ -6,10 +6,12 @@ import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../components/ui/card';
 import { Label } from '../components/ui/label';
+import { useTranslation } from 'react-i18next';
 
 const SignInPage = () => {
   const navigate = useNavigate();
   const { login, signup } = useAppContext();
+  const { t } = useTranslation();
   const [isSignUp, setIsSignUp] = useState(false);
   
   const [name, setName] = useState('');
@@ -51,17 +53,17 @@ const SignInPage = () => {
       <Card className="w-full max-w-md shadow-lg border-border">
         <CardHeader className="space-y-1 text-center">
           <CardTitle className="text-3xl font-bold text-foreground">
-            {isSignUp ? 'Create an Account' : 'Welcome to Aviato'}
+            {isSignUp ? t('signin.create_account') : t('signin.welcome')}
           </CardTitle>
           <CardDescription className="text-muted-foreground">
-            {isSignUp ? 'Join the community today' : 'Sign in to continue your journey'}
+            {isSignUp ? t('signin.join_community') : t('signin.sign_in_continue')}
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             {isSignUp && (
               <div className="space-y-2">
-                <Label htmlFor="name">Full Name</Label>
+                <Label htmlFor="name">{t('signin.full_name')}</Label>
                 <Input 
                   id="name" 
                   type="text" 
@@ -74,7 +76,7 @@ const SignInPage = () => {
             )}
             
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">{t('signin.email')}</Label>
               <Input 
                 id="email" 
                 type="email" 
@@ -85,7 +87,7 @@ const SignInPage = () => {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">{t('signin.password')}</Label>
               <Input 
                 id="password" 
                 type="password" 
@@ -103,8 +105,8 @@ const SignInPage = () => {
               disabled={loading}
             >
               {loading 
-                ? (isSignUp ? 'Creating Account...' : 'Signing in...') 
-                : (isSignUp ? 'Sign Up' : 'Sign In')
+                ? (isSignUp ? t('signin.creating') : t('signin.signing_in')) 
+                : (isSignUp ? t('common.next') : t('signin.title'))
               }
             </Button>
             
@@ -113,17 +115,17 @@ const SignInPage = () => {
                 <span className="w-full border-t border-border" />
               </div>
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-card px-2 text-muted-foreground">or continue with email</span>
+                <span className="bg-card px-2 text-muted-foreground">{t('signin.or_email')}</span>
               </div>
             </div>
             
             <div className="text-center text-sm text-muted-foreground">
-              {isSignUp ? "Already have an account? " : "Don't have an account? "}
+              {isSignUp ? t('signin.already_account') : t('signin.dont_have_account')}{' '}
               <span 
                 onClick={toggleMode}
                 className="text-primary cursor-pointer hover:underline font-medium"
               >
-                {isSignUp ? 'Sign in' : 'Sign up'}
+                {isSignUp ? t('signin.title') : t('signin.create_account')}
               </span>
             </div>
           </form>

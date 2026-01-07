@@ -19,9 +19,11 @@ import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
 import { Input } from '../components/ui/input';
 import CategorySelector from '../components/availability/CategorySelector';
+import { useTranslation } from 'react-i18next';
 
 export default function MatchPage() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const { 
     users, 
     currentUser, 
@@ -79,11 +81,11 @@ export default function MatchPage() {
       {/* Header */}
       <div className="bg-card px-4 py-3 sticky top-0 z-10 border-b border-border shadow-sm space-y-3">
         <div>
-          <h1 className="text-xl font-bold text-foreground">Find your Vibe</h1>
+          <h1 className="text-xl font-bold text-foreground">{t('match.find_vibe')}</h1>
           <p className="text-xs text-muted-foreground">
             {currentSelections.length > 0 
-              ? `${currentSelections.length} interests selected`
-              : "Select interests to match"
+              ? t('match.interests_selected', { count: currentSelections.length })
+              : t('match.select_interests')
             }
           </p>
         </div>
@@ -92,7 +94,7 @@ export default function MatchPage() {
           <div className="relative flex-1">
             <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
             <Input
-              placeholder="Search name or rating..."
+              placeholder={t('match.search_placeholder')}
               className="pl-9 bg-muted border-border text-foreground h-10"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -138,8 +140,8 @@ export default function MatchPage() {
         {displayUsers.length === 0 ? (
            <div className="text-center py-10 text-muted-foreground">
              {searchQuery 
-                ? `No users found matching "${searchQuery}"` 
-                : "No matches found with these interests."}
+                ? t('match.no_users', { query: searchQuery })
+                : t('match.no_matches')}
            </div>
         ) : (
           displayUsers.filter(u => u.id !== currentUser?.id).map(user => (
@@ -147,6 +149,7 @@ export default function MatchPage() {
               key={user.id} 
               user={user} 
               onMessage={() => handleMessage(user.id)} 
+              t={t}
             />
           ))
         )}
@@ -159,12 +162,13 @@ export default function MatchPage() {
         currentSelected={currentSelections}
         onApply={handleApplyFilters}
         maxSelections={5}
+        title={t('match.select_interests')}
       />
     </div>
   );
 }
 
-function MatchCard({ user, onMessage }) {
+function MatchCard({ user, onMessage, t }) {
   const { available, reason, modeColor, statusText } = checkUserAvailability(user);
   
   const canMessage = available;
@@ -262,10 +266,10 @@ function MatchCard({ user, onMessage }) {
           {canMessage ? (
             <>
               <MessageSquare className="w-4 h-4" />
-              Message
+              {t('common.message')}
             </>
           ) : (
-            'Unavailable'
+            t('common.unavailable')
           )}
         </button>
       </div>

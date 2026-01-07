@@ -6,9 +6,11 @@ import { Input } from '../components/ui/input';
 import { Button } from '../components/ui/button';
 import ModeIndicator from '../components/availability/ModeIndicator';
 import RatingModal from '../components/chat/RatingModal';
+import { useTranslation } from 'react-i18next';
 
 const ReviewPage = () => {
   const { users, currentUser, submitReview } = useAppContext();
+  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedUser, setSelectedUser] = useState(null);
   const [expandedUserId, setExpandedUserId] = useState(null);
@@ -32,12 +34,12 @@ const ReviewPage = () => {
 
   return (
     <div className="p-4 space-y-4 pb-20 bg-background min-h-screen">
-      <h1 className="text-xl font-bold mb-4 text-foreground">Review</h1>
+      <h1 className="text-xl font-bold mb-4 text-foreground">{t('nav.review')}</h1>
       
       <div className="relative mb-6">
         <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
         <Input 
-          placeholder="Search for people you've chatted with..." 
+          placeholder={t('review.search_placeholder')}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="pl-9 bg-muted border-border text-foreground"
@@ -93,7 +95,7 @@ const ReviewPage = () => {
                       onClick={() => setSelectedUser(user)}
                       className={hasRated ? "bg-muted text-muted-foreground border-border" : "text-foreground hover:bg-accent"}
                     >
-                      {hasRated ? "Rated" : "Rate"}
+                      {hasRated ? t('review.rated') : t('review.rate')}
                     </Button>
                 </div>
               </div>
@@ -103,7 +105,7 @@ const ReviewPage = () => {
               {/* Interpreting "only after i rate": If I haven't rated, I can't see who else rated. */}
               {expandedUserId === user.id && (
                   <div className="bg-muted/30 px-4 py-3 border-t border-border">
-                      <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Rated By</h4>
+                      <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">{t('review.rated_by')}</h4>
                       {!hasRated ? (
                           <p className="text-sm text-muted-foreground italic">Rate this user to see who else has reviewed them.</p>
                       ) : (
@@ -142,7 +144,7 @@ const ReviewPage = () => {
 
         {rateableUsers.length === 0 && (
           <div className="text-center py-10 text-muted-foreground">
-            No users found to review.
+            {t('review.no_users')}
           </div>
         )}
       </div>
@@ -153,7 +155,7 @@ const ReviewPage = () => {
           onClose={() => setSelectedUser(null)}
           onRate={handleRateSubmit}
           userName={selectedUser.name}
-          title={`Rate ${selectedUser.name}`}
+          title={t('review.rate_user', { name: selectedUser.name })}
           type="review"
         />
       )}
