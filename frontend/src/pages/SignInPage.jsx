@@ -52,15 +52,16 @@ const SignInPage = () => {
       <Card className="w-full max-w-md shadow-lg border-border">
         <CardHeader className="space-y-1 text-center flex flex-col items-center">
           {/* Logo Replacement for Sign In Header */}
-          <div className="mb-2">
+          <div className="mb-4 flex items-center gap-3">
              <img 
                src="https://customer-assets.emergentagent.com/job_messaging-app-253/artifacts/55vxbv1v_aviato.png" 
                alt="Aviato" 
-               className="h-24 w-auto object-contain"
+               className="h-16 w-auto object-contain"
              />
+             <span className="text-4xl font-bold text-foreground tracking-tight">Aviato</span>
           </div>
-          <CardTitle className="text-3xl font-bold text-foreground">
-            {isSignUp ? t('signin.create_account') : t('signin.welcome').replace('Aviato', '')}
+          <CardTitle className="text-2xl font-bold text-foreground">
+            {isSignUp ? t('signin.create_account') : t('signin.welcome').replace('Aviato', '').trim()}
           </CardTitle>
           <CardDescription className="text-muted-foreground">
             {isSignUp ? t('signin.join_community') : t('signin.sign_in_continue')}
