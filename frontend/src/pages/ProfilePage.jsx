@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../contexts/AppContext';
@@ -20,9 +19,11 @@ import ModeSettingsDialog from '../components/profile/ModeSettingsDialog';
 import ProfilePicDialog from '../components/profile/ProfilePicDialog';
 import CategorySelector from '../components/availability/CategorySelector';
 import { AvailabilityMode } from '../data/mockData';
+import { useTranslation } from 'react-i18next';
 
 export default function ProfilePage() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const { currentUser, isAuthenticated, setAvailabilityMode, showToast, updateUserSelections, updateUserProfile } = useAppContext();
 
   
@@ -44,7 +45,7 @@ export default function ProfilePage() {
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-muted-foreground">Loading profile...</p>
+          <p className="text-muted-foreground">{t('profile.loading')}</p>
         </div>
       </div>
     );
@@ -60,50 +61,50 @@ export default function ProfilePage() {
     {
       mode: AvailabilityMode.GREEN,
       icon: '🟢',
-      name: 'Available Mode',
-      description: 'Online and ready to chat',
+      name: t('mode.green.name'),
+      description: t('mode.green.desc'),
       color: '#10B981'
     },
     {
       mode: AvailabilityMode.BLUE,
       icon: '🔵',
-      name: 'Open Mode',
-      description: 'Available from specific date',
+      name: t('mode.blue.name'),
+      description: t('mode.blue.desc'),
       color: '#0066FF'
     },
     {
       mode: AvailabilityMode.YELLOW,
       icon: '🟡',
-      name: 'Later Mode',
-      description: 'Available for limited duration',
+      name: t('mode.yellow.name'),
+      description: t('mode.yellow.desc'),
       color: '#FBBF24'
     },
     {
       mode: AvailabilityMode.ORANGE,
       icon: '🟠',
-      name: 'Max Contact Mode',
-      description: 'Limit number of contacts',
+      name: t('mode.orange.name'),
+      description: t('mode.orange.desc'),
       color: '#F97316'
     },
     {
       mode: AvailabilityMode.RED,
       icon: '🔴',
-      name: 'Locked Mode',
-      description: 'Completely unavailable',
+      name: t('mode.red.name'),
+      description: t('mode.red.desc'),
       color: '#DC2626'
     },
     {
       mode: AvailabilityMode.GRAY,
       icon: '⚪',
-      name: 'Pause Mode',
-      description: 'Temporarily paused',
+      name: t('mode.gray.name'),
+      description: t('mode.gray.desc'),
       color: '#9CA3AF'
     },
     {
       mode: AvailabilityMode.BROWN,
       icon: '🟤',
-      name: 'Timed Mode',
-      description: 'Available at specific time',
+      name: t('mode.brown.name'),
+      description: t('mode.brown.desc'),
       color: '#92400E'
     }
   ];
@@ -132,9 +133,9 @@ export default function ProfilePage() {
         setAvailabilityMode(mode, { suppressToast: true });
         
         if (mode === AvailabilityMode.GREEN) {
-           showToast('✅ Green Mode is now ACTIVE!\nVisible to everyone', 'success');
+           showToast(t('mode.toast_active', { mode: t('mode.green.name') }), 'success');
         } else {
-           showToast(`✅ ${getModeName(mode)} is now ACTIVE!`, 'success');
+           showToast(t('mode.toast_active', { mode: getModeName(mode) }), 'success');
         }
       }
     } else {
@@ -146,7 +147,7 @@ export default function ProfilePage() {
   const confirmDeactivate = () => {
     if (deactivateMode) {
       setAvailabilityMode(null); // Set to Invisible (null)
-      showToast(`✅ ${getModeName(deactivateMode)} is now INACTIVE!\nYou are now Invisible`, 'success');
+      showToast(t('mode.toast_inactive', { mode: getModeName(deactivateMode) }), 'success');
       setDeactivateMode(null);
     }
   };
@@ -178,28 +179,28 @@ export default function ProfilePage() {
         if (currentUser.availability.laterStartTime) {
             const elapsed = Math.floor((Date.now() - currentUser.availability.laterStartTime) / 60000);
             const remaining = Math.max(0, currentUser.availability.laterMinutes - elapsed);
-            return `Expires in ${remaining} minutes`;
+            return t('mode.yellow.expires_in', { minutes: remaining });
         }
         return currentUser.availability.laterMinutes 
-          ? `Expires in ${currentUser.availability.laterMinutes} minutes`
+          ? t('mode.yellow.expires_in', { minutes: currentUser.availability.laterMinutes })
           : undefined;
       
       case AvailabilityMode.ORANGE:
-        return `${currentUser.availability.currentContacts}/${currentUser.availability.maxContact} slots available`;
+        return t('mode.orange.slots', { current: currentUser.availability.currentContacts, max: currentUser.availability.maxContact });
       
       case AvailabilityMode.BROWN:
         return currentUser.availability.timedHour !== null
-          ? `Opens at ${formatTime(currentUser.availability.timedHour, currentUser.availability.timedMinute || 0)}`
+          ? t('mode.brown.opens_at', { time: formatTime(currentUser.availability.timedHour, currentUser.availability.timedMinute || 0) })
           : undefined;
       
       case AvailabilityMode.GREEN:
-        return 'Visible to everyone';
+        return t('mode.green.settings');
       
       case AvailabilityMode.RED:
-        return 'All messaging blocked';
+        return t('mode.red.settings');
       
       case AvailabilityMode.GRAY:
-        return 'Messaging paused';
+        return t('mode.gray.settings');
       
       default:
         return undefined;
@@ -244,7 +245,7 @@ export default function ProfilePage() {
     <div className="min-h-screen bg-background pb-32">
       {/* Top Bar */}
       <div className="bg-card p-4 sticky top-0 border-b border-border z-10 flex items-center justify-center">
-        <h1 className="text-xl font-bold text-foreground">Profile</h1>
+        <h1 className="text-xl font-bold text-foreground">{t('profile.title')}</h1>
       </div>
 
       <div className="p-4 space-y-6">
@@ -275,14 +276,14 @@ export default function ProfilePage() {
         {/* My Vibe / Interests Section */}
         <div>
           <div className="flex items-center justify-between mb-2">
-            <h3 className="font-bold text-lg text-foreground">My Vibe ({currentUser.selections?.length || 0}/5)</h3>
+            <h3 className="font-bold text-lg text-foreground">{t('profile.vibe')} ({currentUser.selections?.length || 0}/5)</h3>
             <Button 
               variant="ghost" 
               size="sm" 
               className="text-primary hover:text-primary/90 p-0 h-auto font-medium"
               onClick={() => setIsInterestsOpen(true)}
             >
-              {currentUser.selections?.length > 0 ? 'Edit' : 'Add'}
+              {currentUser.selections?.length > 0 ? t('profile.edit') : t('profile.add')}
             </Button>
           </div>
           
@@ -307,7 +308,7 @@ export default function ProfilePage() {
                 <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center">
                   <Plus className="w-5 h-5" />
                 </div>
-                <span className="text-sm">Add up to 5 interests to find matches</span>
+                <span className="text-sm">{t('profile.add_interests')}</span>
               </div>
             )}
           </div>
@@ -315,12 +316,12 @@ export default function ProfilePage() {
 
         {/* Profile Set Regulation */}
         <div>
-          <h3 className="font-bold text-lg text-foreground mb-2">Profile Set Regulation</h3>
+          <h3 className="font-bold text-lg text-foreground mb-2">{t('profile.regulation')}</h3>
           
           {/* VISIBILITY STATUS BANNER */}
           <div className="mb-6 bg-card border border-border rounded-xl overflow-hidden shadow-sm">
             <div className="bg-muted px-4 py-2 border-b border-border">
-              <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-wider">YOUR VISIBILITY STATUS</h4>
+              <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-wider">{t('profile.visibility')}</h4>
             </div>
             
             {currentMode ? (
@@ -332,8 +333,8 @@ export default function ProfilePage() {
                    {getModeEmoji(currentMode)}
                  </div>
                  <div>
-                   <div className="font-bold text-foreground">{getModeName(currentMode)} - ACTIVE</div>
-                   <div className="text-sm text-green-600 font-medium">{getActiveSettings(currentMode) || 'Active'}</div>
+                   <div className="font-bold text-foreground">{getModeName(currentMode)} - {t('profile.active')}</div>
+                   <div className="text-sm text-green-600 font-medium">{getActiveSettings(currentMode) || t('profile.active')}</div>
                  </div>
                </div>
             ) : (
@@ -343,18 +344,18 @@ export default function ProfilePage() {
                      👻
                    </div>
                    <div>
-                     <div className="font-bold text-foreground">Invisible Mode - ACTIVE</div>
-                     <div className="text-xs text-muted-foreground">Default State</div>
+                     <div className="font-bold text-foreground">{t('mode.invisible.name')} - {t('profile.active')}</div>
+                     <div className="text-xs text-muted-foreground">{t('profile.default_state')}</div>
                    </div>
                  </div>
                  <p className="text-sm text-muted-foreground leading-relaxed">
-                   You can <span className="font-semibold text-green-600">receive messages</span> but appear <span className="font-semibold text-muted-foreground">offline</span> to others.
+                   {t('profile.invisible_desc')}
                  </p>
                </div>
             )}
           </div>
           
-          <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">Select Your Availability Mode</h4>
+          <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">{t('profile.select_mode')}</h4>
           
           <div className="space-y-3">
             {modes.map((modeData) => (
@@ -389,29 +390,29 @@ export default function ProfilePage() {
         currentSelected={currentUser.selections || []}
         onApply={handleInterestsApply}
         maxSelections={5}
-        title="My Vibe (Max 5)"
+        title={`${t('profile.vibe')} (Max 5)`}
       />
 
       {/* Red Mode Confirmation */}
       <AlertDialog open={confirmRedMode} onOpenChange={setConfirmRedMode}>
         <AlertDialogContent className="max-w-[90vw] w-full rounded-xl bg-card border-border">
           <AlertDialogHeader>
-            <AlertDialogTitle className="text-foreground">⚠️ Activate Locked Mode?</AlertDialogTitle>
+            <AlertDialogTitle className="text-foreground">⚠️ {t('mode.red.confirm_title')}</AlertDialogTitle>
             <AlertDialogDescription className="text-muted-foreground">
-              All messaging will be blocked. You will not receive any new messages.
+              {t('mode.red.confirm_desc')}
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter className="flex-row gap-2 justify-end">
-            <AlertDialogCancel className="mt-0 flex-1 bg-muted text-muted-foreground hover:bg-accent border-border">Cancel</AlertDialogCancel>
+            <AlertDialogCancel className="mt-0 flex-1 bg-muted text-muted-foreground hover:bg-accent border-border">{t('common.cancel')}</AlertDialogCancel>
             <AlertDialogAction 
               onClick={() => {
                 setAvailabilityMode(AvailabilityMode.RED, { suppressToast: true });
-                showToast('✅ Locked Mode is now ACTIVE!\nAll messaging blocked', 'success');
+                showToast(t('mode.toast_active', { mode: t('mode.red.name') }), 'success');
                 setConfirmRedMode(false);
               }} 
               className="bg-destructive hover:bg-destructive/90 text-destructive-foreground flex-1"
             >
-              Lock
+              {t('mode.red.action')}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
@@ -421,18 +422,18 @@ export default function ProfilePage() {
       <AlertDialog open={!!deactivateMode} onOpenChange={(open) => !open && setDeactivateMode(null)}>
         <AlertDialogContent className="max-w-[90vw] w-full rounded-xl bg-card border-border">
           <AlertDialogHeader>
-            <AlertDialogTitle className="text-foreground">Deactivate {deactivateMode && getModeName(deactivateMode)}?</AlertDialogTitle>
+            <AlertDialogTitle className="text-foreground">{t('mode.deactivate_title', { mode: deactivateMode && getModeName(deactivateMode) })}</AlertDialogTitle>
             <AlertDialogDescription className="text-muted-foreground">
-              You will switch to Invisible Mode 👻.
+              {t('mode.deactivate_desc')}
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter className="flex-row gap-2 justify-end">
-            <AlertDialogCancel className="mt-0 flex-1 bg-muted text-muted-foreground hover:bg-accent border-border">Cancel</AlertDialogCancel>
+            <AlertDialogCancel className="mt-0 flex-1 bg-muted text-muted-foreground hover:bg-accent border-border">{t('common.cancel')}</AlertDialogCancel>
             <AlertDialogAction 
               onClick={confirmDeactivate} 
               className="bg-destructive hover:bg-destructive/90 text-destructive-foreground flex-1"
             >
-              Deactivate
+              {t('mode.deactivate_action')}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
