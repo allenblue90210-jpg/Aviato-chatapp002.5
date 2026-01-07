@@ -1,0 +1,117 @@
+{
+  "app": {
+    "name": "Aviato",
+    "tagline": "放っておいて。"
+  },
+  "nav": {
+    "match": "マッチ",
+    "chat": "チャット",
+    "review": "レビュー",
+    "profile": "プロフィール",
+    "settings": "設定"
+  },
+  "settings": {
+    "title": "設定",
+    "language": "言語",
+    "theme": "テーマ",
+    "logout": "ログアウト",
+    "delete_chats": "すべてのチャットを削除",
+    "availability": "ステータス",
+    "app": "アプリ",
+    "about": "Aviatoについて",
+    "contact": "お問い合わせ",
+    "model": "モデル",
+    "terms": "利用規約",
+    "privacy": "プライバシーポリシー",
+    "personalization": "パーソナライズ",
+    "voice": "音声",
+    "view_profile": "プロフィールを表示",
+    "coming_soon": "近日公開！",
+    "logged_out": "ログアウトしました",
+    "chats_deleted": "すべてのチャットを削除しました",
+    "confirm_logout": "ログアウトしてもよろしいですか？",
+    "confirm_delete": "すべてのチャットを削除しますか？",
+    "delete_warning": "この操作は取り消せません。すべての会話が完全に削除されます。",
+    "cancel": "キャンセル",
+    "close": "閉じる"
+  },
+  "profile": {
+    "title": "プロフィール",
+    "vibe": "バイブス",
+    "regulation": "プロフィール設定規制",
+    "visibility": "あなたの公開ステータス",
+    "select_mode": "可用性モードを選択",
+    "active": "アクティブ",
+    "default_state": "デフォルト状態",
+    "invisible_desc": "メッセージを受信できますが、他の人にはオフラインとして表示されます。",
+    "loading": "プロフィールを読み込み中...",
+    "edit": "編集",
+    "add": "追加",
+    "add_interests": "最大5つの興味を追加してマッチング",
+    "location": "場所"
+  },
+  "mode": {
+    "green": {
+      "name": "可能モード",
+      "desc": "オンライン・チャット可能",
+      "settings": "誰にでも表示"
+    },
+    "blue": {
+      "name": "オープンモード",
+      "desc": "特定の日付から利用可能"
+    },
+    "yellow": {
+      "name": "後でモード",
+      "desc": "期間限定で利用可能",
+      "expires_in": "あと {{minutes}} 分で終了"
+    },
+    "orange": {
+      "name": "最大コンタクトモード",
+      "desc": "コンタクト数を制限",
+      "slots": "{{current}}/{{max}} スロット利用可能"
+    },
+    "red": {
+      "name": "ロックモード",
+      "desc": "完全に利用不可",
+      "settings": "すべてのメッセージングをブロック",
+      "confirm_title": "ロックモードを有効にしますか？",
+      "confirm_desc": "すべてのメッセージングがブロックされます。新しいメッセージは受信されません。",
+      "action": "ロック"
+    },
+    "gray": {
+      "name": "一時停止モード",
+      "desc": "一時的に停止中",
+      "settings": "メッセージング一時停止"
+    },
+    "brown": {
+      "name": "時間指定モード",
+      "desc": "特定の時間に利用可能",
+      "opens_at": "{{time}} に開始"
+    },
+    "invisible": {
+      "name": "インビジブルモード"
+    },
+    "deactivate_title": "{{mode}}を無効にしますか？",
+    "deactivate_desc": "インビジブルモード 👻 に切り替わります。",
+    "deactivate_action": "無効化",
+    "toast_active": "{{mode}} がアクティブになりました！",
+    "toast_inactive": "{{mode}} が無効になりました！現在はインビジブルです"
+  },
+  "signin": {
+    "title": "サインイン",
+    "google": "Googleでサインイン",
+    "guest": "ゲストとして続行"
+  },
+  "common": {
+    "save": "保存",
+    "cancel": "キャンセル",
+    "delete": "削除",
+    "edit": "編集",
+    "add": "追加",
+    "close": "閉じる",
+    "back": "戻る",
+    "next": "次へ",
+    "done": "完了",
+    "loading": "読み込み中..."
+  }
+}
