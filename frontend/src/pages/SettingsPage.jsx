@@ -4,8 +4,7 @@ import { useAppContext } from '../contexts/AppContext';
 import { 
   ChevronLeft, 
   ChevronRight, 
-  Check, 
-  AlertTriangle 
+  Check
 } from 'lucide-react';
 import { useToast } from '../hooks/use-toast';
 import ModeInfoDialog from '../components/profile/ModeInfoDialog';
@@ -17,7 +16,6 @@ export default function SettingsPage() {
   const { 
     currentUser, 
     logout, 
-    deleteAllChats, 
     theme, 
     setTheme 
   } = useAppContext();
@@ -27,7 +25,6 @@ export default function SettingsPage() {
   const returnTo = '/chat';
   
   const [showLogoutModal, setShowLogoutModal] = useState(false);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showThemeModal, setShowThemeModal] = useState(false);
   const [showLanguageModal, setShowLanguageModal] = useState(false);
   const [showModeInfo, setShowModeInfo] = useState(false);
@@ -43,12 +40,6 @@ export default function SettingsPage() {
     setShowLogoutModal(false);
     navigate('/signin');
     toast({ title: t('settings.logged_out') });
-  };
-
-  const handleDeleteChats = () => {
-    deleteAllChats();
-    setShowDeleteModal(false);
-    toast({ title: t('settings.chats_deleted') });
   };
 
   const showComingSoon = () => {
@@ -158,7 +149,6 @@ export default function SettingsPage() {
             value={theme ? (theme.charAt(0).toUpperCase() + theme.slice(1)) : 'System'} 
             onClick={() => setShowThemeModal(true)} 
         />
-        <SettingRow icon="🔊" label={t('settings.voice')} value="Katerina" onClick={showComingSoon} />
         <SettingRow icon="🎨" label={t('settings.personalization')} onClick={() => setShowPersonalizationModal(true)} />
       </div>
 
@@ -186,16 +176,6 @@ export default function SettingsPage() {
           icon="🚪" 
           label={t('settings.logout')} 
           onClick={() => setShowLogoutModal(true)} 
-          showArrow={false}
-          isDanger={true}
-        />
-      </div>
-
-      <div className="bg-card mx-4 mt-4 rounded-xl shadow-sm border border-border overflow-hidden">
-        <SettingRow 
-          icon="🗑️" 
-          label={t('settings.delete_chats')} 
-          onClick={() => setShowDeleteModal(true)} 
           showArrow={false}
           isDanger={true}
         />
@@ -306,38 +286,6 @@ export default function SettingsPage() {
                 className="flex-1 py-3 bg-destructive text-destructive-foreground rounded-lg font-medium hover:bg-destructive/90 transition-colors"
               >
                 {t('settings.logout')}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Delete Modal */}
-      {showDeleteModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-card rounded-2xl max-w-sm w-full p-6 shadow-xl border border-border">
-            <h3 className="text-xl font-semibold mb-2 text-foreground">
-              {t('settings.confirm_delete')}
-            </h3>
-            <div className="flex items-start gap-2 mb-6">
-              <AlertTriangle className="w-5 h-5 text-destructive mt-0.5 flex-shrink-0" />
-              <p className="text-muted-foreground">
-                {t('settings.delete_warning')}
-              </p>
-            </div>
-            
-            <div className="flex gap-3">
-              <button
-                onClick={() => setShowDeleteModal(false)}
-                className="flex-1 py-3 bg-muted text-muted-foreground rounded-lg font-medium hover:bg-accent transition-colors"
-              >
-                {t('common.cancel')}
-              </button>
-              <button
-                onClick={handleDeleteChats}
-                className="flex-1 py-3 bg-destructive text-destructive-foreground rounded-lg font-medium hover:bg-destructive/90 transition-colors"
-              >
-                {t('common.delete')}
               </button>
             </div>
           </div>
