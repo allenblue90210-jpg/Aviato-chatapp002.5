@@ -245,8 +245,8 @@ export default function SettingsPage() {
 
       {/* Language Modal */}
       {showLanguageModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-card rounded-2xl max-w-sm w-full p-6 shadow-xl border border-border max-h-[90vh] flex flex-col">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[100] p-4">
+          <div className="bg-card rounded-2xl max-w-sm w-full p-6 shadow-xl border border-border max-h-[80vh] flex flex-col">
             <h3 className="text-lg font-semibold mb-4 text-foreground flex-shrink-0">{t('settings.language')}</h3>
             
             <div className="space-y-2 overflow-y-auto flex-1 min-h-0">
@@ -277,7 +277,7 @@ export default function SettingsPage() {
             
             <button
               onClick={() => setShowLanguageModal(false)}
-              className="mt-4 w-full py-3 bg-background border-2 border-muted text-foreground rounded-lg font-medium hover:bg-accent transition-colors flex-shrink-0 shadow-sm"
+              className="mt-4 w-full py-3 bg-secondary text-secondary-foreground border-2 border-transparent rounded-lg font-medium hover:bg-secondary/80 transition-colors flex-shrink-0 shadow-sm"
             >
               {t('common.cancel')}
             </button>
