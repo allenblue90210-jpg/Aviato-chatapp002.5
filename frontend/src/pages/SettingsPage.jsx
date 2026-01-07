@@ -246,10 +246,10 @@ export default function SettingsPage() {
       {/* Language Modal */}
       {showLanguageModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-card rounded-2xl max-w-sm w-full p-6 shadow-xl border border-border">
-            <h3 className="text-lg font-semibold mb-4 text-foreground">{t('settings.language')}</h3>
+          <div className="bg-card rounded-2xl max-w-sm w-full p-6 shadow-xl border border-border max-h-[90vh] flex flex-col">
+            <h3 className="text-lg font-semibold mb-4 text-foreground flex-shrink-0">{t('settings.language')}</h3>
             
-            <div className="space-y-2">
+            <div className="space-y-2 overflow-y-auto flex-1 min-h-0">
               {languages.map((lang) => (
                 <button
                   key={lang.code}
@@ -260,10 +260,10 @@ export default function SettingsPage() {
                   }}
                   className={`
                     w-full px-4 py-3 rounded-lg text-left flex items-center justify-between
-                    transition-colors border-2
+                    transition-colors border-2 shrink-0
                     ${i18n.language === lang.code 
                       ? 'bg-primary/10 text-primary border-primary' 
-                      : 'bg-muted text-foreground border-transparent hover:bg-accent'
+                      : 'bg-card text-foreground border-muted hover:bg-accent'
                     }
                   `}
                 >
@@ -277,7 +277,7 @@ export default function SettingsPage() {
             
             <button
               onClick={() => setShowLanguageModal(false)}
-              className="mt-4 w-full py-3 bg-muted text-muted-foreground rounded-lg font-medium hover:bg-accent transition-colors"
+              className="mt-4 w-full py-3 bg-background border-2 border-muted text-foreground rounded-lg font-medium hover:bg-accent transition-colors flex-shrink-0 shadow-sm"
             >
               {t('common.cancel')}
             </button>
