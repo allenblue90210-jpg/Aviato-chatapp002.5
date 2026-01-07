@@ -61,7 +61,7 @@ const SignInPage = () => {
           </div>
           
           <CardTitle className="text-3xl font-bold text-foreground">
-            {isSignUp ? t('signin.create_account') : t('signin.welcome').replace('Aviato', '').trim()}
+            {isSignUp ? t('signin.create_account') : t('signin.welcome')}
           </CardTitle>
           <CardDescription className="text-muted-foreground">
             {isSignUp ? t('signin.join_community') : t('signin.sign_in_continue')}
